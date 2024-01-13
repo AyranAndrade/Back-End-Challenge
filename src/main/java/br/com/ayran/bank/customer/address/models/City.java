@@ -1,11 +1,15 @@
 package br.com.ayran.bank.customer.address.models;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "cities")
+@ToString
+@NoArgsConstructor
 public class City {
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -13,7 +17,7 @@ public class City {
     private Integer id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "state_id")
-    private State state;
+    public City(String name) {
+        this.name = name;
+    }
 }

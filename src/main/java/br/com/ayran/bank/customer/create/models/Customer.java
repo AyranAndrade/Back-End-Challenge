@@ -2,12 +2,17 @@ package br.com.ayran.bank.customer.create.models;
 
 import br.com.ayran.bank.customer.address.models.Street;
 import jakarta.persistence.*;
+import lombok.Setter;
+import lombok.ToString;
 
+import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "customers")
+@ToString
+@Setter
 public class Customer {
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -20,7 +25,7 @@ public class Customer {
     private String documentNumber;
     private String password;
 
-    @ManyToOne
+    @ManyToOne(cascade = PERSIST)
     @JoinColumn(name = "street_id")
     private Street address;
 }
